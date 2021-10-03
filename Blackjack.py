@@ -1,6 +1,5 @@
 import random
 
-#https://www.youtube.com/watch?v=C82s5WufNUA
 class Card:
   def __init__(self, suit, value):
     self.suit = ["Hearts", "Spades", "Clubs", "Diamonds"]
