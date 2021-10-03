@@ -66,3 +66,6 @@ deck.show()
 #       else:
 #         print("That is incorrect.  Please try again.")
 #   run()
+  #instead of saying def say_if_minor(pid4343.first_n, 4343,last_n, pid4343.age)
+  #you'd write
+  # def say_if_minor(self)
