@@ -5,64 +5,58 @@ class Card:
     self.suit = ["Hearts", "Spades", "Clubs", "Diamonds"]
     self.value = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
-  def facecard(self):
+  def facecard(self, points):
     if self.value == 'J' or 'Q' or 'K':
       self.points = 10
 
   def show(self):
     print(f'("{self.suit} of {self.value}")')
 
+amazing = Card()
+amazing.show()
 class Deck:
   def __init__(self):
     self.cards = []
     self.shuffle()
 
-  def shuffle(self):
+  def shuffle(self): #missing one argument
     for i in range(1, 14):
       for j in ("Spades", "Clubs", "Diamonds", "Hearts"):
         self.cards.append(Card(j, i))
-        print(f'("{i} of {j}")')
-        print(len(self.cards))
+        # print(f'("{i} of {j}")')
 
-deck = Deck()
-deck.show()
-#   def draw(self):
-#     self.cards = []
-#     deck_number = random.choice(self.value).pop()
-#     deck_suit = random.choice(self.suit).pop()
-#         # return " of ".join((self.value, self.suit))
-#     print(f'("Player has {deck_number} and {deck_suit} ")')
-# # class Player:
+  def draw(self):
+    return self.cards.pop()
+    # print(f'("Player has {deck_number} and {deck_suit} ")')
 
-#     for i in Dealer.deck:
-#       Dealer_hand = random.shuffle(Dealer.deck).pop()
-#     for i in Dealer.suit:
-#       Dealer_hand = random.shuffle(Dealer.suit).pop()
-#     for i in Dealer.deck:
-#       Player_hand = random.shuffle(Dealer.deck).pop()
-#     for i in Dealer.suit:
-#     #   Player_hand = random.shuffle(Dealer.suit).pop()
-#   def hand():
-#     pass
+class Player:
+  def __init__(self, name):
+    self.name = name
+    self.hand = []
 
-#   def hit():
-#     pass
+  def draw(self):
+    self.hand.append(Deck.draw())
+    return self
 
-#   def stand(self, value):
-#     # def discard(self):
-#     # how could I discard the deck or should I say we can only play once...
-#     pass
+  def hand(self):
+    for card in self.hand:
+      card.show()
 
-# class Game:
-#   def run():
-#     while True:
-#       response = input("Welcome! Let's Play! Enter Play to begin: ").lower()
-#       if response == "play":
-#         Deck.shuffle(response)
-#     # if response.lower() == "hit":
-#     #   Player.hit()
-#     # if response.lower() == "stand":
-#     #   Player.stand()
-#       else:
-#         print("That is incorrect.  Please try again.")
+  def hit():
+    pass
 
+  def stand(self, value):
+    pass
+
+class Game:
+  def run():
+    response = input("Welcome! Let's Play! Enter Play to begin: ")
+    if response.lower() == "play":
+      Deck.shuffle(self)  #I think this expects an attribute
+    elif response.lower() == "hit":
+      Player.hit()
+    elif response.lower() == "stand":
+      Player.stand()
+    else:
+      print("That is incorrect.  Please try again.")
+  run()
