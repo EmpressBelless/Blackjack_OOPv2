@@ -1,5 +1,6 @@
 import random
 
+
 class Card:
   def __init__(self, suit, value):
     self.suit = suit
@@ -14,18 +15,19 @@ class Deck:
   def __init__(self):
     self.cards = []
     self.build()
+    self.shuffle()
+  
 
   def build(self): 
     for i in range(1,14):
       for j in ("Spades", "Hearts", "Diamonds", "Clubs"):
         self.cards.append(Card(i, j))
-    
+        print(f'("{i} of {j}")')
     return self.cards
-  
-        #print(f'("{i} of {j}")')
-
+        
   def shuffle(self): #shuffles my deck
     random.shuffle(self.cards)
+    print("New Deck Shuffled!")
 
   def show(self): # if I want to see all of the cards in my deck
     for see in self.cards:
@@ -49,14 +51,13 @@ class Player(Deck):
     # return f'("Player drew {len(playerhand)} cards")'
 
   def showhand(self):  #correct this
-    for card in self.playerhand:
-      return str(card)
+      print(repr(self.playerhand))
 
 class Dealer(Player):
   def __init__(self, name):
       super().__init__(name)
-      self.value = 0
-      self.aces = 0
+      # self.value = 0
+      # self.aces = 0
       self.dealerhand = []
 
   def draw(self):  #Dealer draws cards and they're stored in dealer_hand
@@ -69,21 +70,24 @@ class Dealer(Player):
 
 #   def stand(self, value):
 #     pass
-newplayer = Deck()
-newplayer1 = newplayer
-class Game:
 
+class Game:
   def run():
+    Deck() #This just activates the deck and shuffles. 
     while True:
-      response = input("Welcome! Let's Play! Enter Play to begin: ")
+      name = input("Welcome! Let's Play! Who will the Dealer be going up against today?: ")
+      response = input(f'("Awesome! To begin {name} type play:")')
       if response.lower() == "play":
-          Deck.build(newplayer1)
-          print("Deck has been shuffled!")
-          Dealer.draw(newplayer1)
-          Dealer.draw(newplayer1)
-          Player.draw(newplayer1)
-          Player.draw(newplayer1)
-          Player.showhand(newplayer1)
+        while Dealer.dealerhand == []:
+          Dealer.dealerhand = Deck.cards.pop()  #or dealer.draw()
+          Dealer.dealerhand = Deck.cards.pop()
+          print(f'("Dealer has {len(Dealer.dealerhand)} cards")')
+        while Player.playerhand == []:
+          Player.playerhand = Deck.cards.pop() #or player.draw()
+          Player.playerhand = Deck.cards.pop()
+          print(f'("Player has {len(Player.playerhand)} cards")')
+
+        Player.showhand()
       elif response.lower() == "hit":
         Player.hit()
         player.Deck.draw()
@@ -92,7 +96,10 @@ class Game:
         Player.stand()
       else:
         print("That is incorrect.  Please try again.")
-  run()
+
+newplayer = Game()
+newplayer = "Suzette"
+Game.run()
 
   
 
