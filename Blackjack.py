@@ -33,18 +33,18 @@ class Deck:
     single_card = self.cards.pop()
     return single_card
 
-class Player:
+class Player(Deck):
   def __init__(self, name):
     self.name = name
     self.playerhand = []
 
   def draw(self): #This is for player. confirmation confirmed how many cards he drew
-    playerhand = Deck.cards.pop(self)
-    print(f'("Player drew {len(self.playerhand)} cards")')
+    playerhand = self.cards.pop()
+    # return f'("Player drew {len(playerhand)} cards")'
 
   def showhand(self):
     for card in self.playerhand:
-      Card.showhand(card)
+      return card 
 
 class Dealer(Player):
   def __init__(self, name):
@@ -54,8 +54,9 @@ class Dealer(Player):
       self.dealerhand = []
 
   def draw(self):  #Dealer draws cards and they're stored in dealer_hand
-    self.dealerhand = Deck.cards.pop(self)
-    print(f'("Player drew {len(self.dealerhand)} cards")')
+    dealerhand = self.cards.pop()
+    # dealer_hand_count = len(dealerhand)
+    # return f'("Player drew {dealer_hand_count} cards")'
 
 #   def hit():
 #     pass
@@ -76,7 +77,7 @@ class Game:
           Dealer.draw(newplayer1)
           Player.draw(newplayer1)
           Player.draw(newplayer1)
-          Player.showhand()
+          Player.showhand(newplayer1)
       elif response.lower() == "hit":
         Player.hit()
         player.Deck.draw()
