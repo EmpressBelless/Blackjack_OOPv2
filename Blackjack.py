@@ -19,7 +19,9 @@ class Deck:
     for i in range(1,14):
       for j in ("Spades", "Hearts", "Diamonds", "Clubs"):
         self.cards.append(Card(i, j))
-    Deck.shuffle(self)
+    
+    return self.cards
+  
         #print(f'("{i} of {j}")')
 
   def shuffle(self): #shuffles my deck
@@ -37,14 +39,18 @@ class Player(Deck):
   def __init__(self, name):
     self.name = name
     self.playerhand = []
+    self.playerhandlist = []
+
+  def __repr__(self): #correct this
+      return super().__repr__()
 
   def draw(self): #This is for player. confirmation confirmed how many cards he drew
-    playerhand = self.cards.pop()
+    self.playerhand = self.cards.pop()
     # return f'("Player drew {len(playerhand)} cards")'
 
-  def showhand(self):
+  def showhand(self):  #correct this
     for card in self.playerhand:
-      return card 
+      return str(card)
 
 class Dealer(Player):
   def __init__(self, name):
